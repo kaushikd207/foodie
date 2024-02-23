@@ -27,11 +27,37 @@ li a {
   padding: 16px;
   text-decoration: none;
 }
-.menuItem{
+.menuItem {
   margin-right: 80px;
 }
 li a:hover {
   background-color: #ebe1e1;
   color: rgb(43, 38, 38);
   text-shadow: 2px 2px 4px #000000;
+}
+.cardBody {
+  width: 90%;
+  margin: 5%;
+}
+.card {
+  width: 200px;
+  margin: 10px 21px;
+}
+.card:hover {
+  border: 2px solid rgb(201, 192, 192);
+  cursor: pointer;
+}
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px 5px;
+}
+.cardImage > img {
+  width: 95%;
+  height: 180px;
+  margin: 5px 5px;
+  border-radius: 2px;
+}
+.locationIcon {
+  padding: 5px, 5px;
 }
