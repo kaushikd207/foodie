@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div className="navBar">
@@ -7,16 +8,16 @@ const Header = () => {
       <div className="menuItem">
         <ul>
           <li>
-            <a href="#home">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="#aboutUs">About Us</a>
+            <Link to="/about">About Us</Link>
           </li>
           <li>
-            <a href="#contact">Contact</a>
+            <Link to="/contact">Contact Us</Link>
           </li>
           <li>
-            <a href="#cart">Cart</a>
+            <Link to="/cart">Cart</Link>
           </li>
         </ul>
       </div>
