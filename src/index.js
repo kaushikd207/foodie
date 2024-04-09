@@ -8,6 +8,8 @@ import CardBody from "./components/CardBody";
 import About from "./components/Contact";
 import Cart from "./components/Card";
 import Contact from "./components/Contact";
+import { Provider } from "react-redux";
+import { store } from "./store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const appRouter = createBrowserRouter([
@@ -23,6 +25,10 @@ const appRouter = createBrowserRouter([
     ],
   },
 ]);
-root.render(<RouterProvider router={appRouter}></RouterProvider>);
+root.render(
+  <Provider store={store}>
+    <RouterProvider router={appRouter}></RouterProvider>
+  </Provider>
+);
 
 reportWebVitals();

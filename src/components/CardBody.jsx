@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setRestaurants } from "././server/restaurant.slice";
 import Card from "./Card";
 const CardBody = () => {
   const [restaurant, setRestaurant] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [searchList, setSearchList] = useState([]);
+  const restaurantList = useSelector(
+    (state) => state?.restaurant?.restaurantList
+  );
+  const dispatch = useDispatch();
   useEffect(() => {
     getResData();
   }, []);
@@ -12,14 +18,14 @@ const CardBody = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.12060&lng=91.65230&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const restList = await data.json();
-    setRestaurant(
-      restList?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
+    setRestaurant(restaurantList);
+    dispatch(
+      setRestaurants(
+        restList?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      )
     );
-    setSearchList(
-      restList?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
+    setSearchList(restaurantList);
   };
 
   return (
@@ -30,14 +36,14 @@ const CardBody = () => {
           value={searchValue}
           onChange={(e) => {
             setSearchValue(e.target.value);
-            const filterredList = restaurant?.filter((rest) =>
+            const filterredList = restaurantList?.filter((rest) =>
               rest?.info?.name
                 ?.toLowerCase()
                 .includes(searchValue.toLowerCase())
             );
             e.target.value.length !== 0
               ? setSearchList(filterredList)
-              : setSearchList(restaurant);
+              : setSearchList(restaurantList);
           }}
         ></input>
         <button className="searchBtn">Search</button>
