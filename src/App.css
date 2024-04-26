@@ -73,3 +73,16 @@ li a:hover {
   height: 20%;
   width: 30%;
 }
+.menuContainer {
+  width: 60%;
+  border: 1px solid red;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.menuItems {
+  height: 50px;
+  width: 60%;
+}

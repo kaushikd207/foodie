@@ -10,6 +10,7 @@ import Cart from "./components/Card";
 import Contact from "./components/Contact";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import MenuCard from "./components/MenuCard";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const appRouter = createBrowserRouter([
@@ -22,6 +23,7 @@ const appRouter = createBrowserRouter([
       { path: "/about", element: <About /> },
       { path: "/contact", element: <Contact /> },
       { path: "/contact", element: <Cart /> },
+      { path: "/restaurant/:restId", element: <MenuCard /> },
     ],
   },
 ]);
