@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setRestaurants } from "././server/restaurant.slice";
 import Card from "./Card";
+import { Link } from "react-router-dom";
 const CardBody = () => {
   const [restaurant, setRestaurant] = useState([]);
   const [searchValue, setSearchValue] = useState("");
@@ -18,14 +19,20 @@ const CardBody = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.12060&lng=91.65230&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const restList = await data.json();
-    setRestaurant(restaurantList);
+    setRestaurant(
+      restList?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
     dispatch(
       setRestaurants(
         restList?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       )
     );
-    setSearchList(restaurantList);
+    setSearchList(
+      restList?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   };
 
   return (
@@ -52,7 +59,12 @@ const CardBody = () => {
         {searchList?.length > 0 ? (
           <div className="cardContainer">
             {searchList?.map((restaurant, index) => {
-              return <Card key={index} restaurant={restaurant} />;
+              console.log();
+              return (
+                <Link key={index} to={`/restaurant/${restaurant?.info?.id}`}>
+                  <Card restaurant={restaurant} />
+                </Link>
+              );
             })}
           </div>
         ) : (
